@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Interface</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Order Interface</h1>
+  </header>
+
+  <main class="order-ui-container">
+    <!-- Menu Section -->
+    <section class="menu-section">
+      <div class="menu-columns">
+        <div class="menu-column">
+          <h2>Starters</h2>
+          <div class="menu-item">
+            <span>Garlic Bread</span>
+            <input type="number" min="1" value="1" id="qty-garlic">
+            <button onclick="addToOrder('Garlic Bread', 'qty-garlic')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Soup</span>
+            <input type="number" min="1" value="1" id="qty-soup">
+            <button onclick="addToOrder('Soup', 'qty-soup')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Bruschetta</span>
+            <input type="number" min="1" value="1" id="qty-bruschetta">
+            <button onclick="addToOrder('Bruschetta', 'qty-bruschetta')">Add</button>
+          </div>
+        </div>
+
+        <div class="menu-column">
+          <h2>Mains</h2>
+          <div class="menu-item">
+            <span>Burger</span>
+            <input type="number" min="1" value="1" id="qty-burger">
+            <button onclick="addToOrder('Burger', 'qty-burger')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Pizza</span>
+            <input type="number" min="1" value="1" id="qty-pizza">
+            <button onclick="addToOrder('Pizza', 'qty-pizza')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Steak</span>
+            <input type="number" min="1" value="1" id="qty-steak">
+            <button onclick="addToOrder('Steak', 'qty-steak')">Add</button>
+          </div>
+        </div>
+
+        <div class="menu-column">
+          <h2>Desserts</h2>
+          <div class="menu-item">
+            <span>Ice Cream</span>
+            <input type="number" min="1" value="1" id="qty-icecream">
+            <button onclick="addToOrder('Ice Cream', 'qty-icecream')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Cake</span>
+            <input type="number" min="1" value="1" id="qty-cake">
+            <button onclick="addToOrder('Cake', 'qty-cake')">Add</button>
+          </div>
+          <div class="menu-item">
+            <span>Brownie</span>
+            <input type="number" min="1" value="1" id="qty-brownie">
+            <button onclick="addToOrder('Brownie', 'qty-brownie')">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drinks Section -->
+      <div class="drinks-section">
+        <h2>Drinks</h2>
+        <div class="menu-item">
+          <span>Coke</span>
+          <input type="number" min="1" value="1" id="qty-coke">
+          <button onclick="addToOrder('Coke', 'qty-coke')">Add</button>
+        </div>
+        <div class="menu-item">
+          <span>Lemonade</span>
+          <input type="number" min="1" value="1" id="qty-lemonade">
+          <button onclick="addToOrder('Lemonade', 'qty-lemonade')">Add</button>
+        </div>
+        <div class="menu-item">
+          <span>Water</span>
+          <input type="number" min="1" value="1" id="qty-water">
+          <button onclick="addToOrder('Water', 'qty-water')">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Summary Section -->
+    <aside class="order-summary">
+      <h2>Current Order</h2>
+      <label for="table-select">Table Number:</label>
+      <select id="table-select">
+        <option value="1">Table 1</option>
+        <option value="2">Table 2</option>
+        <option value="3">Table 3</option>
+        <option value="4">Table 4</option>
+      </select>
+
+      <ul id="order-items"></ul>
+
+      <button class="submit-order-btn">Submit Order</button>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Your Restaurant</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
