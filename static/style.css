@@ -52,4 +52,21 @@ body {
   text-align: center;
 }
 
+.submit-btn {
+  grid-column: span 2; /* Makes the button take full row in the grid */
+  justify-self: center; /* Centers it horizontally */
+  width: 850px; /* Or set a fixed width like 200px */
+  padding: 15px 30px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #5a6268;
+}
   

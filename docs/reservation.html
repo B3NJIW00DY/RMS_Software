@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Reservations</title>
+  link rel="stylesheet" href="../static/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #6c757d;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 200px;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    footer {
+      margin-top: 20px;
+      background-color: #6c757d;
+      height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">RestaurantName</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Reservations</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Reservations</h1>
+    </header>
+
+    <div class="hero-image">
+      <!-- Placeholder for image -->
+      <p>Image Placeholder</p>
+    </div>
+
+    <form>
+        <!-- Customer Information Fields-->
+        <div>
+          <label for="guests">Number of Guests</label>
+          <input type="number" id="guests" name="guests">
+        </div>
+      
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+      
+        <div>
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date">
+        </div>
+      
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+      
+        <div>
+          <label for="time">Time</label>
+          <select id="time" name="time">
+            <option value="">Select a time</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="17:30">5:30 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="18:30">6:30 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="19:30">7:30 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="20:30">8:30 PM</option>
+          </select>
+        </div>
+      
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name">
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit Reservation</button>
+      </form>
+  
+        
+   
+    
+        
+  </div>
+
+</body>
+</html>
