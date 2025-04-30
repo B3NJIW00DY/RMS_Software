@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Management System</title>
+    <link rel="stylesheet" href="/static/content/site.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">RestaurantName</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Reservations</a></li>
+            <li><a href="{{ url_for('reservation') }}">Login</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <img src="https://raw.githubusercontent.com/B3NJIW00DY/RMS_Software/e01707efc4929e3b0459ba2049d14887f0ccaada/Images/Header%20for%20Home%20Page.jpg" alt="Header Image" class="header-image">
+    <div class="header-container">
+        <a href="#reservations" class="book-now-button">Book Now</a>
+    </div>
+
+    <nav class="navbar menu-navbar">
+        <ul class="nav-links">
+            <li><a href="#starters">Starters</a></li>
+            <li><a href="#">Mains</a></li>
+            <li><a href="#">Desserts</a></li>
+        </ul>
+    </nav>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="dish-popup" style="display: none;">
+        <div class="popup-box">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-description"></p>
+            <p id="popup-nutrition"></p>
+        </div>
+    </div>
+
+    <!-- Food Gallery Section -->
+    <section class="food-gallery" id="starters">
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Golden crispy spring rolls filled with a savory mix of vegetables and spices, served with a tangy dipping sauce."
+             data-nutrition="Calories: 150, Carbs: 20g, Protein: 3g, Fat: 8g">
+            <img src="https://th.bing.com/th/id/OIP.F-Zr6jNahNbB7KZqQTexrQHaIm?rs=1&pid=ImgDetMain" alt="Dish 1">
+            <p>Fried Spring Rolls</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="A perfectly grilled steak, seasoned with salt, pepper, and a hint of garlic, served with crispy fries."
+             data-nutrition="Calories: 500, Carbs: 35g, Protein: 40g, Fat: 25g">
+            <img src="https://montpellier.citycrunch.fr/wp-content/uploads/sites/7/2021/11/white-plate-with-fries-and-a-grilled-steak-scaled.jpg" alt="Dish 2">
+            <p>Grilled Steak</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="A healthy mix of grilled vegetables served in a bowl with quinoa and a drizzle of olive oil."
+             data-nutrition="Calories: 350, Carbs: 45g, Protein: 8g, Fat: 15g">
+            <img src="https://mariamarlowe.com/wp-content/uploads/2019/12/Veggie-Bowl_Maria-Marlowe-3-1-3-744x533.jpg" alt="Dish 3">
+            <p>Veggie Bowl</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Creamy mushroom soup served hot with a side of garlic bread."
+             data-nutrition="Calories: 220, Carbs: 18g, Protein: 5g, Fat: 14g">
+            <img src="https://i.pinimg.com/originals/02/34/3e/02343e15cc9d59352f577deb38b1d44f.jpg" alt="Dish 4">
+            <p>Mushroom Soup</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Tender chicken tikka pieces in a rich, creamy tomato sauce served with naan."
+             data-nutrition="Calories: 480, Carbs: 30g, Protein: 35g, Fat: 22g">
+            <img src="https://i.pinimg.com/originals/2c/66/16/2c661694d5154b38d7096086ae92047b.jpg" alt="Dish 5">
+            <p>Chicken Tikka Masala</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Classic Caesar salad with crunchy croutons and parmesan."
+             data-nutrition="Calories: 260, Carbs: 12g, Protein: 7g, Fat: 20g">
+            <img src="https://th.bing.com/th/id/OIP.iygI3O0_sxJUfpiUDFpLBgHaE8?rs=1&pid=ImgDetMain" alt="Dish 6">
+            <p>Caesar Salad</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Delicious spaghetti topped with homemade meatballs and rich marinara sauce."
+             data-nutrition="Calories: 520, Carbs: 60g, Protein: 25g, Fat: 18g">
+            <img src="https://i.pinimg.com/originals/1a/32/eb/1a32eba8ba97847c14ddfd668e38d0e5.jpg" alt="Dish 7">
+            <p>Spaghetti & Meatballs</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="Battered fish with golden chips, served with tartar sauce."
+             data-nutrition="Calories: 600, Carbs: 50g, Protein: 35g, Fat: 28g">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/047/279/996/small_2x/a-white-plate-with-a-dish-of-food-on-it-free-photo.jpg" alt="Dish 8">
+            <p>Fish and Chips</p>
+        </div>
+
+        <div class="food-item" onclick="openPopup(this)"
+             data-description="A rich and moist chocolate cake topped with ganache and chocolate curls."
+             data-nutrition="Calories: 480, Carbs: 58g, Protein: 6g, Fat: 22g">
+            <img src="https://i.pinimg.com/736x/f5/a9/35/f5a935116833bcf6724817c190321177.jpg" alt="Dish 9">
+            <p>Chocolate Cake</p>
+        </div>
+    </section>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>

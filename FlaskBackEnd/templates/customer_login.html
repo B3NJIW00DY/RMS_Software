@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="/static/content/site.css">
+</head>
+<body>
+    <header>
+        <h1>Customer Log In</h1>
+    </header>
+
+    <main>
+        <div class="login-options">
+            <div class="login-box" onclick="location.href='{{ url_for('customer_login') }}'">
+                <i class="fas fa-user"></i>
+                <span>Existing Customer</span>
+            </div>
+            <div class="login-box" onclick="location.href='{{ url_for('customer_login') }}'">
+                <i class="fas fa-user-plus"></i>
+                <span>New Customer</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Company</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Status Update</title>
+    <link rel="stylesheet" href="/static/content/site.css">
+    <script>
+        function updateStatusColor(selectElement, tableNumber, itemName) {
+            const value = selectElement.value;
+
+            if (value === 'ready') {
+                selectElement.style.backgroundColor = 'green';
+            } else if (value === 'preparing') {
+                selectElement.style.backgroundColor = 'red';
+            } else if (value === 'cooking') {
+                selectElement.style.backgroundColor = 'yellow';
+            }
+
+            fetch('/update_status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    table_number: tableNumber,
+                    item_name: itemName,
+                    new_status: value
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Status updated:', data);
+                })
+                .catch(error => {
+                    console.error('Error updating status:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Order Status</h1>
+        <a href="{{ url_for('order_page') }}" class="back-button">
+            <span class="back-icon">&#8592;</span> Back
+        </a>
+    </header>
+
+    <main>
+        {% for order in orders %}
+        <div class="order-status-container">
+            <span class="table-number">Table #{{ order.table_number }}</span>
+            {% for item in order.get_food_items() %}
+            <div class="order-item-status">
+                <p>{{ item.name }} (x{{ item.quantity }})</p>
+
+                <select onchange="updateStatusColor(this, '{{ order.table_number }}', '{{ item.name }}')"
+                        {% if item.status=='ready' %}
+                        style="background-color: green;"
+                        {% elif item.status=='cooking' %}
+                        style="background-color: yellow;"
+                        {% else %}
+                        style="background-color: red;"
+                        {% endif %}>
+                    <option value="preparing" {% if item.status=='preparing' %}selected{% endif %}>Preparing</option>
+                    <option value="cooking" {% if item.status=='cooking' %}selected{% endif %}>Cooking</option>
+                    <option value="ready" {% if item.status=='ready' %}selected{% endif %}>Ready</option>
+                </select>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Company</p>
+    </footer>
+</body>
+</html>
