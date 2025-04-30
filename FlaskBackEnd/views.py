@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from FlaskBackEnd import app
 
 import json
@@ -26,13 +26,40 @@ valid_manager = {
 def home():
     return render_template('home_page.html', title="Home Page")
 
-# Reservation Page (Now opens Customer Login page)
+# Book Now logic to check login status
+@app.route('/book_now')
+def book_now():
+    if 'customer_logged_in' in session:
+        return redirect(url_for('reservation_page'))
+    else:
+        return redirect(url_for('customer_login'))
+
+# Reservation Page
+@app.route('/reservation_page', methods=['GET', 'POST'])
+def reservation_page():
+    return render_template('reservation.html', title="Make a Reservation")
+
+# Reservation Login Page
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
     return render_template('customer_login.html', title="Customer Login")
 
+# Customer Login Page
 @app.route('/customer_login', methods=['GET', 'POST'])
 def customer_login():
+    if request.method == 'POST':
+        # Dummy login logic for demonstration
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Replace this with actual user validation
+        if username == 'customer' and password == 'password':
+            session['customer_logged_in'] = True
+            return redirect(url_for('reservation_page'))
+        else:
+            flash("Invalid credentials. Please try again.")
+            return redirect(url_for('customer_login'))
+
     return render_template('customer_login_page2.html', title="Customer Login Page 2")
 
 # Staff login page
@@ -100,14 +127,14 @@ class Order:
     def __init__(self, table_number):
         self.table_number = table_number
         self.items = []
-    
+
     def add_item(self, name, quantity, status="preparing"):
         if name in menu:
             self.items.append(OrderItem(name, quantity, status))
-    
+
     def calculate_total(self):
         return sum(menu[item.name].price * item.quantity for item in self.items)
-    
+
     def get_food_items(self):
         return [item for item in self.items if not menu[item.name].is_drink]
 
@@ -158,7 +185,7 @@ def submit_order():
         if ':' in item:
             name, quantity = item.split(':')
             order.add_item(name, int(quantity))
-    
+
     orders.append(order)
     save_orders()
 
