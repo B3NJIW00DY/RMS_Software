@@ -43,18 +43,21 @@
     <Folder Include="FlaskBackEnd\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskBackEnd\Coding Conventions.txt" />
+    <Content Include="FlaskBackEnd\static\content\Order_Interface.css" />
     <Content Include="FlaskBackEnd\static\content\Staff_Login.css" />
     <Content Include="FlaskBackEnd\static\scripts\Order_Interface.js" />
     <Content Include="FlaskBackEnd\templates\customer_login.html" />
     <Content Include="FlaskBackEnd\templates\customer_login_page2.html" />
     <Content Include="FlaskBackEnd\templates\home_page.html" />
+    <Content Include="FlaskBackEnd\templates\Inventory.html" />
+    <Content Include="FlaskBackEnd\templates\Inventory.json" />
     <Content Include="FlaskBackEnd\templates\login_page.html" />
     <Content Include="FlaskBackEnd\templates\Manager_login_page.html" />
     <Content Include="FlaskBackEnd\templates\Order_Interface.html" />
     <Content Include="FlaskBackEnd\templates\Order_Request.html" />
     <Content Include="FlaskBackEnd\templates\Reservation.html" />
     <Content Include="FlaskBackEnd\templates\Staff_Login_Page.html" />
-    <Content Include="requirements.txt" />
     <Content Include="FlaskBackEnd\static\content\bootstrap.css" />
     <Content Include="FlaskBackEnd\static\content\bootstrap.min.css" />
     <Content Include="FlaskBackEnd\static\content\site.css" />
@@ -78,9 +81,10 @@
     <Content Include="FlaskBackEnd\static\scripts\respond.min.js" />
     <Content Include="FlaskBackEnd\static\scripts\_references.js" />
     <Content Include="FlaskBackEnd\templates\about.html" />
-    <Content Include="FlaskBackEnd\templates\contact.html" />
     <Content Include="FlaskBackEnd\templates\index.html" />
     <Content Include="FlaskBackEnd\templates\layout.html" />
+    <Content Include="FlaskBackEnd\templates\Staff_schedule.html" />
+    <Content Include="FlaskBackEnd\templates\View_Reservations.html" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.13" />
