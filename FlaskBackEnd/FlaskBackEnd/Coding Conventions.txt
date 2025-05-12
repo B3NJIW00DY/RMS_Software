@@ -1,0 +1,52 @@
+Restaurant System – Coding Conventions
+File Organization
+•	Separation of Concerns: Keep routing (FlaskBackEnd.py), templates (/templates), static assets (/static), and helper classes (e.g., Reservation, Order) clearly separated.
+•	Data Storage: Use reservations.json and orders.json for persistent data. Ensure all read/write operations handle missing files gracefully.
+
+Naming Conventions
+•	Function Names: Use snake_case, e.g., submit_order(), amend_reservation().
+•	Class Names: Use PascalCase, e.g., Reservation, OrderItem.
+•	Variables: Descriptive lowercase or snake_case, e.g., menu, orders, reservation_to_amend.
+
+Route Definitions
+•	Define all routes with @app.route() decorators.
+•	Always specify methods (e.g., methods=['GET', 'POST']) where applicable.
+•	Use semantic and REST-like naming:
+•	  - /submit_reservation (POST)
+•	  - /view_reservations (GET)
+•	  - /amend_reservation/<reservation_id> (GET, POST)
+•	  - /cancel_reservation/<reservation_id> (POST)
+
+Authentication & Sessions
+•	Use session to manage login status and user data (e.g., customer name/email).
+•	Store credentials in dictionaries during development; use secure storage (e.g., hashed DB) in production.
+
+Data Classes
+•	Use Python classes with to_dict() and from_dict() for reservation and order objects to cleanly serialize and deserialize.
+•	Add comments ("""Docstrings""") to explain each class and method.
+
+Error Handling
+•	Wrap file I/O in try/except FileNotFoundError to prevent crashes.
+•	Use flash() for user feedback on failures and successes.
+
+Code Style
+•	Indentation: 4 spaces.
+•	Quotes: Prefer double quotes for HTML/template strings, single quotes for Python strings.
+•	Line Length: Keep lines under 120 characters.
+•	Commenting:
+•	  - Use docstrings ("""...""") for classes and key methods.
+•	  - Use inline # comments for specific logic when necessary.
+
+Templates
+•	Store HTML in templates/ and name descriptively (e.g., View_reservations.html, Order_Request.html).
+•	Use title context variable for setting page titles consistently.
+
+JSON Conventions
+•	Always write JSON with indent=4 for readability.
+•	Ensure JSON keys match class attributes.
+•	Use UUIDs for unique identifiers (e.g., reservation.id).
+
+Menu Data
+•	Keep menu dictionary defined once at the global level.
+•	Each MenuItem must include name, price, and optionally is_drink=True.
+

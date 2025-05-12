@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Sheet</title>
+    <link rel="stylesheet" href="/static/content/site.css" />
+
+</head>
+<body>
+
+    <header>
+        <h2>Restaurant Reservation System</h2>
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">MyRestaurant</div>
+        <ul class="nav-links">
+            <li><a href="{{url_for('home') }}">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Reservations</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="reservation-table-container">
+            <h1>Reservation List</h1>
+            <table class="reservation-table">
+                <thead>
+                    <tr>
+                        <th>Reservation Date</th>
+                        <th>Time</th>
+                        <th>Number of People</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.date }}</td>
+                        <td>{{ reservation.time }}</td>
+                        <td>{{ reservation.guests }}</td>
+                        <td>{{ reservation.name }}</td>
+                        <td>
+                            <a href="{{ url_for("amend_reservation", reservation_id=reservation['id']) }}" class="action-btn amend-btn">Amend</a>
+
+                            <button class="action-btn cancel-btn">Cancel</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyRestaurant. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

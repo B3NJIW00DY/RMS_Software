@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Staff Scheduler</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f3f3f3;
+        }
+
+        .slot-content {
+            position: relative;
+            cursor: pointer;
+            min-height: 60px;
+        }
+
+        .selected-staff {
+            white-space: pre-line;
+            font-size: 0.95rem;
+            padding: 2px;
+        }
+
+        .staff-checkboxes {
+            display: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-align: left;
+        }
+
+            .staff-checkboxes label {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 0.9rem;
+            }
+
+            .staff-checkboxes input {
+                margin-right: 6px;
+            }
+
+        .day-label {
+            font-weight: bold;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Restaurant Staff Scheduling System</h2>
+    </header>
+
+    <main>
+        <h1>Staff Scheduler</h1>
+        <table id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>10:00</th>
+                    <th>11:00</th>
+                    <th>12:00</th>
+                    <th>13:00</th>
+                    <th>14:00</th>
+                    <th>15:00</th>
+                    <th>16:00</th>
+                    <th>17:00</th>
+                    <th>18:00</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleBody">
+                <!-- Schedule rows will be generated here -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Restaurant Scheduler App</p>
+    </footer>
+
+    <script>
+    const staff = ['John', 'Jane', 'Alice', 'Bob'];
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const hours = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+
+    const scheduleBody = document.getElementById('scheduleBody');
+
+    days.forEach(day => {
+      const row = document.createElement('tr');
+
+      const dayCell = document.createElement('td');
+      dayCell.classList.add('day-label');
+      dayCell.textContent = day;
+      row.appendChild(dayCell);
+
+      hours.forEach(() => {
+        const cell = document.createElement('td');
+
+        cell.innerHTML = `
+          <div class="slot-content" onclick="toggleCheckboxes(this)">
+            <div class="selected-staff"></div>
+            <div class="staff-checkboxes">
+              ${staff.map(s => `
+                <label><input type="checkbox" value="${s}" onchange="updateStaff(this)"> ${s}</label>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        row.appendChild(cell);
+      });
+
+      scheduleBody.appendChild(row);
+    });
+
+    function toggleCheckboxes(container) {
+      const checkboxesDiv = container.querySelector('.staff-checkboxes');
+      const allOpen = document.querySelectorAll('.staff-checkboxes');
+      allOpen.forEach(div => {
+        if (div !== checkboxesDiv) div.style.display = 'none';
+      });
+      checkboxesDiv.style.display = checkboxesDiv.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function updateStaff(checkbox) {
+      const checkboxesDiv = checkbox.closest('.staff-checkboxes');
+      const selectedDiv = checkboxesDiv.previousElementSibling;
+      const allChecked = checkboxesDiv.querySelectorAll('input[type="checkbox"]:checked');
+      const names = Array.from(allChecked).map(cb => cb.value);
+      selectedDiv.textContent = names.join('\n');
+    }
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.slot-content')) {
+        document.querySelectorAll('.staff-checkboxes').forEach(div => div.style.display = 'none');
+      }
+    });
+    </script>
+</body>
+</html>
